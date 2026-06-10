@@ -257,6 +257,30 @@
             color: var(--azul-profundo);
             text-align: center;
         }
+        /* Caixa de Cópia do PIX */
+        .container-pix {
+            background-color: var(--branco);
+            border: 2px dashed var(--azul-xadrez);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-sizing: border-box;
+        }
+
+        .container-pix:hover {
+            background-color: #f0f4f8;
+        }
+
+        .chave-pix {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.05rem;
+            color: var(--vermelho-festivo);
+            font-weight: bold;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -315,6 +339,10 @@
             </table>
             <div class="aviso-caixa">Atenção: A compra de fichas de alimentação deve ser feita centralizada na Secretaria!</div>
             <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+            <div class="container-pix" onclick="copiarPIX('04.572.923/0001-79')">
+                <strong>Chave PIX do Grupo (Clique para copiar):</strong><br>
+                <span class="chave-pix">04.572.923/0001-79</span>
+            </div>
         </div>
 
         <div id="jogos" class="aba-conteudo">
@@ -333,6 +361,10 @@
             </table>
             <div class="aviso-caixa" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">Os jogos podem ser pagos direto nas barracas na hora da brincadeira (Dinheiro ou PIX).</div>
             <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+            <div class="container-pix" onclick="copiarPIX('04.572.923/0001-79')">
+                <strong>Chave PIX do Grupo (Clique para copiar):</strong><br>
+                <span class="chave-pix">04.572.923/0001-79</span>
+            </div>
         </div>
 
         <div id="programacao" class="aba-conteudo">
@@ -512,6 +544,14 @@
             if (idxD2 < 0) idxD2 = dadosD2.length - 1;
             if (idxD2 >= dadosD2.length) idxD2 = 0;
             carregarPergunta();
+        }
+        // Função para copiar a chave PIX para a área de transferência
+        function copiarPIX(chave) {
+            navigator.clipboard.writeText(chave).then(() => {
+                alert("Chave PIX copiada para a área de transferência! 🎉");
+            }).catch(err => {
+                console.error("Erro ao copiar a chave: ", err);
+            });
         }
     </script>
 </body>
