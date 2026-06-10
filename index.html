@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Festa Junina - GED 2026</title>
+    <title>Festa Junina - GED 2026</title>
     <style>
         :root {
             --azul-profundo: #0b1d33;
@@ -12,18 +12,20 @@
             --azul-xadrez: #264a7f;
             --branco: #ffffff;
             --texto-escuro: #2b2b2b;
+            --cinza-claro: #e6dfcc;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--texto-escuro);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             position: relative;
+            box-sizing: border-box;
         }
 
         /* Plano de fundo unificado com opacidade 0.6 em todas as telas */
@@ -42,175 +44,218 @@
             z-index: -1;
         }
 
-        /* Cabeçalho alinhado com os logos nas extremidades */
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            max-width: 550px;
-            margin-bottom: 25px;
-            background: rgba(254, 250, 238, 0.9);
-            padding: 15px;
+            max-width: 600px;
+            margin-bottom: 15px;
+            background: rgba(254, 250, 238, 0.95);
+            padding: 12px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             box-sizing: border-box;
         }
 
-        .logo-header-esq {
-            width: 55px;
-            height: auto;
-        }
-
-        .logo-header-dir {
-            width: 85px;
-            height: auto;
-        }
+        .logo-header-esq { width: 50px; height: auto; }
+        .logo-header-dir { width: 75px; height: auto; }
 
         .header-texto {
             text-align: center;
             flex: 1;
-            padding: 0 10px;
+            padding: 0 5px;
             color: var(--azul-profundo);
         }
 
-        .header-texto h2 {
+        .header-texto h2 { font-size: 0.85rem; margin: 0 0 2px 0; font-weight: bold; }
+        .header-texto h3 { font-size: 0.75rem; margin: 0 0 2px 0; color: var(--texto-escuro); }
+        .header-texto h4 { font-size: 0.75rem; margin: 0 0 4px 0; font-weight: bold; }
+        .header-texto p { font-size: 0.7rem; margin: 0; font-style: italic; }
+
+        /* Menu Principal Empilhado Verticalmente */
+        .menu-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 600px;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+
+        .btn-menu {
+            background-color: var(--azul-profundo);
+            color: var(--branco);
+            border: none;
+            padding: 15px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-menu:hover {
+            background-color: var(--vermelho-festivo);
+        }
+
+        .btn-menu.btn-dinamica {
+            background-color: var(--vermelho-festivo);
+        }
+
+        .btn-menu.btn-dinamica:hover {
+            background-color: #911519;
+        }
+
+        /* Botão Voltar ao Menu */
+        .btn-voltar {
+            background-color: #666;
+            color: var(--branco);
+            border: none;
+            width: 100%;
+            padding: 12px;
             font-size: 0.95rem;
-            margin: 0 0 2px 0;
             font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+            transition: background 0.2s;
         }
 
-        .header-texto h3 {
-            font-size: 0.8rem;
-            margin: 0 0 2px 0;
-            color: var(--texto-escuro);
+        .btn-voltar:hover {
+            background-color: #444;
         }
 
-        .header-texto h4 {
-            font-size: 0.8rem;
-            margin: 0 0 4px 0;
-            font-weight: bold;
-        }
-
-        .header-texto p {
-            font-size: 0.75rem;
-            margin: 0;
-            font-style: italic;
-        }
-
-        /* Container do painel do Quiz */
-        .quiz-container {
+        /* Container de Telas */
+        .container-principal {
             background-color: var(--bege-rustico);
             width: 100%;
-            max-width: 550px;
+            max-width: 600px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0,0,0,0.3);
             border: 4px solid var(--bege-rustico);
             box-sizing: border-box;
+            margin-bottom: 30px;
         }
 
         .decoracao-xadrez {
-            height: 20px;
+            height: 15px;
             background-color: var(--branco);
             background-image: 
                 linear-gradient(45deg, var(--azul-xadrez) 25%, transparent 25%, transparent 75%, var(--azul-xadrez) 75%),
                 linear-gradient(45deg, var(--azul-xadrez) 25%, transparent 25%, transparent 75%, var(--azul-xadrez) 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+            background-size: 16px 16px;
+            background-position: 0 0, 8px 8px;
         }
 
-        .conteudo-quiz {
-            padding: 25px;
+        .aba-conteudo {
+            padding: 20px;
+            display: none;
+        }
+
+        h2.titulo-secao {
+            color: var(--azul-profundo);
+            margin-top: 0;
+            border-bottom: 2px solid var(--vermelho-festivo);
+            padding-bottom: 5px;
+            font-size: 1.4rem;
             text-align: center;
         }
 
-        .instrucao {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: var(--azul-profundo);
+        /* Estilização de Tabelas e Listas */
+        .tabela-itens {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: var(--branco);
+            border-radius: 6px;
+            overflow: hidden;
         }
 
-        .frame-foto {
+        .tabela-itens th, .tabela-itens td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--cinza-claro);
+            font-size: 0.95rem;
+        }
+
+        .tabela-itens th {
+            background-color: var(--azul-xadrez);
+            color: var(--branco);
+        }
+
+        .aviso-caixa {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Tela do Bloqueio de Senha */
+        .bloqueio-container {
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .input-senha {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid var(--azul-xadrez);
+            border-radius: 6px;
+            width: 80%;
+            max-width: 250px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        /* Estilos Internos do Quiz */
+        .instrucao { font-size: 1.15rem; font-weight: bold; margin-bottom: 15px; color: var(--azul-profundo); text-align: center; }
+        .frame-foto { width: 100%; height: 280px; background-color: #d1c7bd; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid #dfd5c6; }
+        .frame-foto img { width: 100%; height: 100%; object-fit: cover; }
+        .painel-dica { margin-bottom: 15px; min-height: 40px; text-align: center; }
+        .texto-dica { font-size: 1.05rem; font-weight: bold; color: var(--vermelho-festivo); margin-top: 8px; }
+        .botoes-container { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px; }
+        .btn-acao { background-color: var(--branco); border: 2px solid var(--azul-xadrez); padding: 8px 16px; font-size: 0.9rem; font-weight: bold; border-radius: 6px; cursor: pointer; color: var(--azul-profundo); flex: 1; }
+        .btn-acao:hover { background-color: var(--azul-profundo); color: var(--branco); }
+        .btn-dica { background-color: var(--vermelho-festivo); border: none; color: var(--branco); width: 100%; padding: 10px; font-size: 0.95rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .btn-dica:hover { background-color: #911519; }
+        .contador { font-size: 0.85rem; color: #666; margin-bottom: 5px; font-weight: bold; text-align: center; }
+
+        /* Estilo do Mapa */
+        .mapa-img {
             width: 100%;
-            height: 320px;
-            background-color: #d1c7bd;
+            height: auto;
             border-radius: 8px;
+            border: 2px solid var(--azul-xadrez);
+            background-color: #d1c7bd;
+        }
+
+        /* Ajuste do container de perguntas da Dinâmica 2 */
+        .caixa-pergunta {
+            background: var(--branco);
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid var(--azul-xadrez);
             margin-bottom: 20px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            border: 3px solid #dfd5c6;
-        }
-
-        .frame-foto img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Área de Dicas e Controles */
-        .painel-dica {
-            margin-bottom: 20px;
-            min-height: 50px;
-        }
-
-        .texto-dica {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            color: var(--vermelho-festivo);
-            margin-top: 10px;
-        }
-
-        .botoes-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn-acao {
-            background-color: var(--branco);
-            border: 2px solid var(--azul-xadrez);
-            padding: 10px 18px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
             color: var(--azul-profundo);
-        }
-
-        .btn-acao:hover {
-            background-color: var(--azul-profundo);
-            color: var(--branco);
-        }
-
-        .btn-dica {
-            background-color: var(--vermelho-festivo);
-            border: 2px solid var(--vermelho-festivo);
-            color: var(--branco);
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-dica:hover {
-            background-color: #911519;
-            border-color: #911519;
-        }
-
-        .contador {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 10px;
-            font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
@@ -230,82 +275,244 @@
     <main class="quiz-container">
         <div class="decoracao-xadrez"></div>
         
-        <div class="conteudo-quiz">
-            <div class="contador" id="numero-pergunta">Foto 1 de 1</div>
-            <div class="instrucao">Escreva no papel: Quem é este chefe?</div>
+        <div id="menu-principal" class="menu-vertical">
+            <button class="btn-menu" onclick="mudarAba('cardapio')">Cardápio do Arraiá</button>
+            <button class="btn-menu" onclick="mudarAba('jogos')">Jogos e Atrações</button>
+            <button class="btn-menu" onclick="mudarAba('programacao')">Programação do Dia</button>
+            <button class="btn-menu" onclick="mudarAba('mapa')">Mapa do Evento</button>
+            <button class="btn-menu btn-dinamica" onclick="mudarAba('dinamica1')">Dinâmica 1: Quem é o Chefe?</button>
+            <button class="btn-menu btn-dinamica" onclick="mudarAba('dinamica2')">Dinâmica 2: Quiz sobre o GED</button>
+        </div>
+        
+        <div id="cardapio" class="aba-conteudo">
+            <h2 class="titulo-secao">Cardápio do Nosso Arraiá</h2>
+            <table class="tabela-itens">
+                <thead>
+                    <tr><th>Item / Opção</th><th>Preço</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Pastel (Carne ou Queijo)</td><td>R$ 8,00</td></tr>
+                    <tr><td>Cachorro-quente</td><td>R$ 9,00</td></tr>
+                    <tr><td>Pipoca</td><td>R$ 5,00</td></tr>
+                    <tr><td>Pinhão</td><td>R$ 5,00</td></tr>
+                    <tr><td>Bolo (Com opções Sem Glúten/Lactose)</td><td>R$ 8,00</td></tr>
+                    <tr><td>Quentão (Não alcoólico)</td><td>R$ 8,00</td></tr>
+                    <tr><td>Sucos (Laranja e Uva) / Refrigerante Lata</td><td>R$ 6,00</td></tr>
+                    <tr><td>Água</td><td>R$ --</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="titulo-secao" style="margin-top: 20px;">Combos Especiais</h2>
+            <table class="tabela-itens">
+                <thead>
+                    <tr><th>Composição do Combo</th><th>Preço</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1 Refr/Suco + 1 Pedaço de Bolo + 1 Salgado (Pastel ou Hot-dog)</td><td>R$ 20,00</td></tr>
+                    <tr><td>1 Salgado (Pastel ou Hot-dog) + 1 Refrigerante/Suco</td><td>R$ 13,00</td></tr>
+                    <tr><td>2 Salgados + 1 Refrigerante/Suco</td><td>R$ 21,00</td></tr>
+                </tbody>
+            </table>
+            <div class="aviso-caixa">Atenção: A compra de fichas de alimentação deve ser feita centralizada na Secretaria!</div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+        </div>
+
+        <div id="jogos" class="aba-conteudo">
+            <h2 class="titulo-secao">Brincadeiras e Atrações</h2>
+            <table class="tabela-itens">
+                <thead>
+                    <tr><th>Jogo</th><th>Onde Fica</th><th>Preço</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Pescaria </td><td>Espaço próprio</td><td>R$ 2,00</td></tr>
+                    <tr><td>Acertar a Argola </td><td>Espaço próprio</td><td>R$ 2,00</td></tr>
+                    <tr><td>Boca do Palhaço (Arremesso)</td><td>Espaço próprio</td><td>R$ 2,00</td></tr>
+                    <tr><td>Prisão / Cadeia (Prender / Soltar por 10 min)</td><td>Espaço próprio</td><td>R$ 1,00 / R$ 2,00</td></tr>
+                    <tr><td>Correio Elegante </td><td>Circulando</td><td>R$ 2,00</td></tr>
+                </tbody>
+            </table>
+            <div class="aviso-caixa" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">Os jogos podem ser pagos direto nas barracas na hora da brincadeira (Dinheiro ou PIX).</div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+        </div>
+
+        <div id="programacao" class="aba-conteudo">
+            <h2 class="titulo-secao">Programação do Dia</h2>
+            <table class="tabela-itens">
+                <thead>
+                    <tr><th>Horário</th><th>Atividade no Microfone</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>14:00 - 14:30</td><td>Abertura oficial da festa e início das barracas</td></tr>
+                    <tr><td>14:30 - 15:00</td><td>Música e integração</td></tr>
+                    <tr><td>15:00 - 15:30</td><td>Dinâmica de apresentação</td></tr>
+                    <tr><td>15:30 - 16:00</td><td>Desafio de dança entre grupos (Karaokê?)</td></tr>
+                    <tr><td>16:00 - 16:30</td><td>Dinâmica surpresa</td></tr>
+                    <tr><td>16:30 - 17:00</td><td>Música junina e tradicional quadrilha</td></tr>
+                    <tr><td>17:00 - 17:30</td><td>Dinâmica competitiva com prêmios</td></tr>
+                    <tr><td>17:30 - 18:00</td><td>Música ambiente geral</td></tr>
+                    <tr><td>18:00 - 18:30</td><td>Evento oficial de encerramento</td></tr>
+                    <tr><td>18:30 - 19:00</td><td>Fechamento das atividades e arrumação</td></tr>
+                </tbody>
+            </table>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+        </div>
+
+        <div id="mapa" class="aba-conteudo">
+            <h2 class="titulo-secao">Mapa da Sede do GED</h2>
+            <img src="mapa_festa.png" alt="Mapa do Evento da Festa Junina" class="mapa-img">
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+        </div>
+
+        <div id="dinamica1" class="aba-conteudo">
+            <h2 class="titulo-secao">Dinâmica 1: Chefes Antigos</h2>
             
-            <div class="frame-foto">
-                <img id="foto-chefe" src="" alt="Foto antiga do chefe">
+            <div id="bloqueio-d1" class="bloqueio-container">
+                <p>Esta dinâmica está trancada! Aguarde a liberação da chefia no microfone e insira a senha anunciada:</p>
+                <input type="password" id="senha-d1" class="input-senha" placeholder="Senha da Atividade"><br>
+                <button class="btn-acao" style="max-width: 180px;" onclick="validarSenha1()">Desbloquear</button>
+                <p id="erro-d1" style="color: var(--vermelho-festivo); font-weight: bold; margin-top: 10px; display: none;">Senha incorreta!</p>
             </div>
 
-            <div class="painel-dica">
-                <button class="btn-dica" onclick="mostrarDica()">Ver Dica</button>
-                <div id="texto-dica" class="texto-dica" style="display: none;"></div>
+            <div id="conteudo-d1" style="display: none;">
+                <div class="contador" id="contador-d1">Foto 1 de 5</div>
+                <div class="instrucao">Escreva no papel: Quem é este chefe?</div>
+                <div class="frame-foto">
+                    <img id="foto-chefe" src="" alt="Foto antiga do chefe">
+                </div>
+                <div class="painel-dica">
+                    <button class="btn-dica" onclick="mostrarDica1()">Ver Dica</button>
+                    <div id="texto-dica1" class="texto-dica" style="display: none;"></div>
+                </div>
+                <div class="botoes-container">
+                    <button class="btn-acao" onclick="navegar1(-1)">← Anterior</button>
+                    <button class="btn-acao" onclick="navegar1(1)">Próxima →</button>
+                </div>
+            </div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+        </div>
+
+        <div id="dinamica2" class="aba-conteudo">
+            <h2 class="titulo-secao">Dinâmica 2: Quiz do GED</h2>
+            
+            <div id="bloqueio-d2" class="bloqueio-container">
+                <p>Esta dinâmica está trancada! Aguarde a liberação da chefia no microfone e insira a senha anunciada:</p>
+                <input type="password" id="senha-d2" class="input-senha" placeholder="Senha da Atividade"><br>
+                <button class="btn-acao" style="max-width: 180px;" onclick="validarSenha2()">Desbloquear</button>
+                <p id="erro-d2" style="color: var(--vermelho-festivo); font-weight: bold; margin-top: 10px; display: none;">Senha incorreta!</p>
             </div>
 
-            <div class="botoes-container">
-                <button class="btn-acao" onclick="navegar(-1)">← Anterior</button>
-                <button class="btn-acao" onclick="navegar(1)">Próxima →</button>
+            <div id="conteudo-d2" style="display: none;">
+                <div class="contador" id="contador-d2">Pergunta 1 de 3</div>
+                <div class="instrucao">Escreva no papel a resposta certa:</div>
+                <div class="caixa-pergunta" id="texto-pergunta">Carregando pergunta...</div>
+                <div class="botoes-container">
+                    <button class="btn-acao" onclick="navegar2(-1)">← Anterior</button>
+                    <button class="btn-acao" onclick="navegar2(1)">Próxima →</button>
+                </div>
             </div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
         </div>
     </main>
 
     <script>
-        // Banco de dados das imagens antigas e seus respectivos ramos para a dica
-        const dadosQuiz = [
-            {
-                imagem: "chefe_antigo_1.jpg",
-                ramo: "Ramo do Chefe: Lobinho (Alcateia)"
-            },
-            {
-                imagem: "chefe_antigo_2.jpg",
-                ramo: "Ramo do Chefe: Escoteiro"
-            },
-            {
-                imagem: "chefe_antigo_3.jpg",
-                ramo: "Ramo do Chefe: Sênior"
-            },
-            {
-                imagem: "chefe_antigo_4.jpg",
-                ramo: "Ramo do Chefe: Pioneiro (Clã)"
+        // Controle de Abas e Fluxo do Menu Central
+        function mudarAba(idAba) {
+            const abas = document.getElementsByClassName("aba-conteudo");
+            for (let i = 0; i < abas.length; i++) {
+                abas[i].style.display = "none";
             }
+            document.getElementById("menu-principal").style.display = "none";
+            document.getElementById(idAba).style.display = "block";
+        }
+
+        function voltarAoMenu() {
+            const abas = document.getElementsByClassName("aba-conteudo");
+            for (let i = 0; i < abas.length; i++) {
+                abas[i].style.display = "none";
+            }
+            document.getElementById("menu-principal").style.display = "flex";
+        }
+
+        // Validação da Senha - Dinâmica 1
+        function validarSenha1() {
+            const senha = document.getElementById("senha-d1").value.trim().toLowerCase();
+            if (senha === "chefes") {
+                document.getElementById("bloqueio-d1").style.display = "none";
+                document.getElementById("conteudo-d1").style.display = "block";
+                carregarFoto();
+            } else {
+                document.getElementById("erro-d1").style.display = "block";
+            }
+        }
+
+        // Validação da Senha - Dinâmica 2
+        function validarSenha2() {
+            const senha = document.getElementById("senha-d2").value.trim().toLowerCase();
+            if (senha === "perguntas") {
+                document.getElementById("bloqueio-d2").style.display = "none";
+                document.getElementById("conteudo-d2").style.display = "block";
+                carregarPergunta();
+            } else {
+                document.getElementById("erro-d2").style.display = "block";
+            }
+        }
+
+        // Dados da Dinâmica 1 (Mapeado com 5 itens)
+        const dadosD1 = [
+            { imagem: "chefe_antigo_1.jpg", ramo: "Ramo do Chefe: Lobinho (Alcateia)" },
+            { imagem: "chefe_antigo_2.jpg", ramo: "Ramo do Chefe: Escoteiro" },
+            { imagem: "chefe_antigo_3.jpg", ramo: "Ramo do Chefe: Sênior" },
+            { imagem: "chefe_antigo_4.jpg", ramo: "Ramo do Chefe: Pioneiro (Clã)" },
+            { imagem: "chefe_antigo_5.jpg", ramo: "Ramo do Chefe: Diretoria / Geral" }
         ];
 
-        let indiceAtual = 0;
+        // Dados da Dinâmica 2 (Quiz de perguntas históricas)
+        const dadosD2 = [
+            { questao: "Em qual ano foi fundado o grupo?" },
+            { questao: "Qual das opções não foi um presidente do grupo?" },
+            { questao: "Quantas patrulhas tinha a primeira tropa escoteira?" }
+        ];
 
+        let idxD1 = 0;
+        let idxD2 = 0;
+
+        // Funções de Navegação da Dinâmica 1
         function carregarFoto() {
-            const dados = dadosQuiz[indiceAtual];
+            if (dadosD1.length === 0) return;
+            const dados = dadosD1[idxD1];
             document.getElementById("foto-chefe").src = dados.imagem;
-            document.getElementById("numero-pergunta").innerText = `Foto ${indiceAtual + 1} de ${dadosQuiz.length}`;
-            
-            // Oculta a dica anterior ao mudar de foto
-            const elementoDica = document.getElementById("texto-dica");
-            elementoDica.style.display = "none";
-            elementoDica.innerText = "";
+            document.getElementById("contador-d1").innerText = `Foto ${idxD1 + 1} de ${dadosD1.length}`;
+            document.getElementById("texto-dica1").style.display = "none";
         }
 
-        function mostrarDica() {
-            const dados = dadosQuiz[indiceAtual];
-            const elementoDica = document.getElementById("texto-dica");
-            elementoDica.innerText = dados.ramo;
-            elementoDica.style.display = "block";
+        function mostrarDica1() {
+            const dados = dadosD1[idxD1];
+            const elemento = document.getElementById("texto-dica1");
+            elemento.innerText = dados.ramo;
+            elemento.style.display = "block";
         }
 
-        function navegar(direcao) {
-            indiceAtual += direcao;
-            
-            // Restringe a navegação aos limites do banco de dados
-            if (indiceAtual < 0) {
-                indiceAtual = dadosQuiz.length - 1;
-            } else if (indiceAtual >= dadosQuiz.length) {
-                indiceAtual = 0;
-            }
-            
+        function navegar1(dir) {
+            idxD1 += dir;
+            if (idxD1 < 0) idxD1 = dadosD1.length - 1;
+            if (idxD1 >= dadosD1.length) idxD1 = 0;
             carregarFoto();
         }
 
-        // Carga inicial do sistema
-        window.onload = carregarFoto;
+        // Funções de Navegação da Dinâmica 2
+        function carregarPergunta() {
+            if (dadosD2.length === 0) return;
+            const dados = dadosD2[idxD2];
+            document.getElementById("texto-pergunta").innerText = dados.questao;
+            document.getElementById("contador-d2").innerText = `Pergunta ${idxD2 + 1} de ${dadosD2.length}`;
+        }
+
+        function navegar2(dir) {
+            idxD2 += dir;
+            if (idxD2 < 0) idxD2 = dadosD2.length - 1;
+            if (idxD2 >= dadosD2.length) idxD2 = 0;
+            carregarPergunta();
+        }
     </script>
 </body>
 </html>
