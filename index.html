@@ -308,84 +308,33 @@
             <button class="btn-menu btn-dinamica" onclick="mudarAba('dinamica2')">Dinâmica 2: Quiz sobre o GED</button>
         </div>
         
+        <!-- ABA CARDÁPIO -->
         <div id="cardapio" class="aba-conteudo">
             <h2 class="titulo-secao">Cardápio do Nosso Arraiá</h2>
-            <table class="tabela-itens">
-                <thead>
-                    <tr><th>Item / Opção</th><th>Preço</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Pastel (Carne ou Queijo)</td><td>R$ 8,00</td></tr>
-                    <tr><td>Cachorro-quente</td><td>R$ 9,00</td></tr>
-                    <tr><td>Pipoca</td><td>R$ 5,00</td></tr>
-                    <tr><td>Pinhão</td><td>R$ 5,00</td></tr>
-                    <tr><td>Bolo (Com opções Sem Glúten/Lactose)</td><td>R$ 8,00</td></tr>
-                    <tr><td>Quentão (Não alcoólico)</td><td>R$ 8,00</td></tr>
-                    <tr><td>Sucos (Laranja e Uva) / Refrigerante Lata</td><td>R$ 6,00</td></tr>
-                    <tr><td>Água</td><td>R$ --</td></tr>
-                </tbody>
-            </table>
-
-            <h2 class="titulo-secao" style="margin-top: 20px;">Combos Especiais</h2>
-            <table class="tabela-itens">
-                <thead>
-                    <tr><th>Composição do Combo</th><th>Preço</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>1 Refr/Suco + 1 Pedaço de Bolo + 1 Salgado (Pastel ou Hot-dog)</td><td>R$ 20,00</td></tr>
-                    <tr><td>1 Salgado (Pastel ou Hot-dog) + 1 Refrigerante/Suco</td><td>R$ 13,00</td></tr>
-                    <tr><td>2 Salgados + 1 Refrigerante/Suco</td><td>R$ 21,00</td></tr>
-                </tbody>
-            </table>
-            <div class="aviso-caixa">Atenção: A compra de fichas de alimentação deve ser feita centralizada na Secretaria!</div>
-            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
-            <div class="container-pix" onclick="copiarPIX('04.572.923/0001-79')">
+            <img src="cardapio.png" alt="Cardápio da Festa" class="mapa-img">
+            
+            <div class="container-pix" onclick="copiarPIX('CNPJ_OU_CHAVE_AQUI')">
                 <strong>Chave PIX do Grupo (Clique para copiar):</strong><br>
-                <span class="chave-pix">04.572.923/0001-79</span>
+                <span class="chave-pix">CNPJ_OU_CHAVE_AQUI</span>
             </div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
         </div>
 
+       <!-- ABA JOGOS -->
         <div id="jogos" class="aba-conteudo">
             <h2 class="titulo-secao">Brincadeiras e Atrações</h2>
-            <table class="tabela-itens">
-                <thead>
-                    <tr><th>Jogo</th><th>Onde Fica</th><th>Preço</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Pescaria </td><td>Espaço próprio</td><td>R$ 2,00</td></tr>
-                    <tr><td>Acertar a Argola </td><td>Espaço próprio</td><td>R$ 2,00</td></tr>
-                    <tr><td>Boca do Palhaço (Arremesso)</td><td>Espaço próprio</td><td>R$ 2,00</td></tr>
-                    <tr><td>Prisão / Cadeia (Prender / Soltar por 10 min)</td><td>Espaço próprio</td><td>R$ 1,00 / R$ 2,00</td></tr>
-                    <tr><td>Correio Elegante </td><td>Circulando</td><td>R$ 2,00</td></tr>
-                </tbody>
-            </table>
-            <div class="aviso-caixa" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">Os jogos podem ser pagos direto nas barracas na hora da brincadeira (Dinheiro ou PIX).</div>
-            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
-            <div class="container-pix" onclick="copiarPIX('04.572.923/0001-79')">
+            <img src="jogos.png" alt="Jogos e Atividades" class="mapa-img">
+            
+            <div class="container-pix" onclick="copiarPIX('CNPJ_OU_CHAVE_AQUI')">
                 <strong>Chave PIX do Grupo (Clique para copiar):</strong><br>
-                <span class="chave-pix">04.572.923/0001-79</span>
+                <span class="chave-pix">CNPJ_OU_CHAVE_AQUI</span>
             </div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
         </div>
 
         <div id="programacao" class="aba-conteudo">
             <h2 class="titulo-secao">Programação do Dia</h2>
-            <table class="tabela-itens">
-                <thead>
-                    <tr><th>Horário</th><th>Atividade no Microfone</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>14:00 - 14:30</td><td>Abertura oficial da festa e início das barracas</td></tr>
-                    <tr><td>14:30 - 15:00</td><td>Música e integração</td></tr>
-                    <tr><td>15:00 - 15:30</td><td>Dinâmica de apresentação</td></tr>
-                    <tr><td>15:30 - 16:00</td><td>Desafio de dança entre grupos (Karaokê?)</td></tr>
-                    <tr><td>16:00 - 16:30</td><td>Dinâmica surpresa</td></tr>
-                    <tr><td>16:30 - 17:00</td><td>Música junina e tradicional quadrilha</td></tr>
-                    <tr><td>17:00 - 17:30</td><td>Dinâmica competitiva com prêmios</td></tr>
-                    <tr><td>17:30 - 18:00</td><td>Música ambiente geral</td></tr>
-                    <tr><td>18:00 - 18:30</td><td>Evento oficial de encerramento</td></tr>
-                    <tr><td>18:30 - 19:00</td><td>Fechamento das atividades e arrumação</td></tr>
-                </tbody>
-            </table>
+            <img src="programacao.png" alt="Programação do Evento" class="mapa-img">
             <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
         </div>
 
