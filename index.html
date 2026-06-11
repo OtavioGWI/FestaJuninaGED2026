@@ -306,8 +306,17 @@
             <button class="btn-menu" onclick="mudarAba('mapa')">Mapa do Evento</button>
             <button class="btn-menu btn-dinamica" onclick="mudarAba('dinamica1')">Dinâmica 1: Quem é o Chefe?</button>
             <button class="btn-menu btn-dinamica" onclick="mudarAba('dinamica2')">Dinâmica 2: Quiz sobre o GED</button>
+            <button class="btn-menu" style="background-color: var(--azul-xadrez);" onclick="mudarAba('qrcode_aba')">Compartilhar Site</button>
         </div>
-        
+        <!-- ABA QR CODE -->
+        <div id="qrcode_aba" class="aba-conteudo">
+            <h2 class="titulo-secao">Acesse a Programação</h2>
+            <p style="text-align: center; font-weight: bold; margin-bottom: 15px; padding: 0 5px;">Abra esta tela no seu celular para que outras pessoas consigam escanear e acessar o nosso site!</p>
+            <div style="text-align: center; margin: 15px 0;">
+                <img src="QRcode.png" alt="QR Code do Site" class="mapa-img" style="max-width: 280px; display: block; margin: 0 auto;">
+            </div>
+            <button class="btn-voltar" onclick="voltarAoMenu()">← Voltar ao Menu</button>
+        </div>
         <!-- ABA CARDÁPIO -->
         <div id="cardapio" class="aba-conteudo">
             <h2 class="titulo-secao">Cardápio do Nosso Arraiá</h2>
