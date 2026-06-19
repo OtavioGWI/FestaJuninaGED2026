@@ -499,6 +499,11 @@
             { imagem: "Silvana.png", ramo: "Ramo do Chefe: Alcateia" },
             { imagem: "Lucas.png", ramo: "Ramo do Chefe: Tropa Escoteira" }
         ];
+        // Pré-carrega todas as fotos na memória do navegador assim que o site abre
+dadosD1.forEach(dado => {
+    const img = new Image();
+    img.src = dado.imagem;
+});
 
        // Dados da Dinâmica 2 (Quiz exclusivo sobre a história e estrutura do GED)
         const dadosD2 = [
