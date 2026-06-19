@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Festa Junina - GED 2026</title>
     <style>
+
+        /* Estrutura do Zoom em Tela Cheia */
+        .zoom-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .zoom-overlay img {
+            max-width: 95%;
+            max-height: 85%;
+            object-fit: contain;
+            border: 3px solid var(--branco);
+            border-radius: 8px;
+        }
+
+        .btn-fechar-zoom {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--vermelho-festivo);
+            color: var(--branco);
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
         :root {
             --azul-profundo: #0b1d33;
             --bege-rustico: #f4efe2;
@@ -281,6 +318,7 @@
             font-weight: bold;
             word-break: break-all;
         }
+        
     </style>
 </head>
 <body>
@@ -447,20 +485,33 @@
             }
         }
 
-        // Dados da Dinâmica 1 (Mapeado com 5 itens)
+// Dados da Dinâmica 1 (Corrigido para .png)
         const dadosD1 = [
-            { imagem: "chefe_antigo_1.jpg", ramo: "Ramo do Chefe: Lobinho (Alcateia)" },
-            { imagem: "chefe_antigo_2.jpg", ramo: "Ramo do Chefe: Escoteiro" },
-            { imagem: "chefe_antigo_3.jpg", ramo: "Ramo do Chefe: Sênior" },
-            { imagem: "chefe_antigo_4.jpg", ramo: "Ramo do Chefe: Pioneiro (Clã)" },
-            { imagem: "chefe_antigo_5.jpg", ramo: "Ramo do Chefe: Diretoria / Geral" }
+            { imagem: "Adri.png", ramo: "Ramo do Chefe: Tropa Escoteira" },
+            { imagem: "Ale.png", ramo: "Ramo do Chefe: Diretoria" },
+            { imagem: "Bia.png", ramo: "Ramo do Chefe: Alcateia" },
+            { imagem: "Carlos.png", ramo: "Ramo do Chefe: Alcateia" },
+            { imagem: "Chalene.png", ramo: "Ramo do Chefe: Tropa Escoteira" },
+            { imagem: "Danilo.png", ramo: "Ramo do Chefe: Clã Pioneiro" },
+            { imagem: "Leo.png", ramo: "Ramo do Chefe: Tropa Escoteira" },
+            { imagem: "Leticia.png", ramo: "Ramo do Chefe: Tropa Sênior" },
+            { imagem: "Robson.png", ramo: "Ramo do Chefe: Clã Pioneiro" },
+            { imagem: "Silvana.png", ramo: "Ramo do Chefe: Alcateia" },
+            { imagem: "Lucas.png", ramo: "Ramo do Chefe: Tropa Escoteira" }
         ];
 
-        // Dados da Dinâmica 2 (Quiz de perguntas históricas)
+       // Dados da Dinâmica 2 (Quiz exclusivo sobre a história e estrutura do GED)
         const dadosD2 = [
-            { questao: "Em qual ano foi fundado o grupo?" },
-            { questao: "Qual das opções não foi um presidente do grupo?" },
-            { questao: "Quantas patrulhas tinha a primeira tropa escoteira?" }
+            { questao: "Em qual ano o Grupo Escoteiro Desterro foi oficialmente fundado?" },
+            { questao: "Quantas e quais patrulhas existiam na Tropa Escoteira quando o grupo foi fundado?" },
+            { questao: "Onde ficava localizada a primeira sede do nosso grupo?" },
+            { questao: "Qual é o nome do nosso Clã Pioneiro?" },
+            { questao: "Quantos anos de história o GED possui atualmente?" },
+            { questao: "Aproximadamente quantos membros ativos o grupo possui hoje?" },
+            { questao: "Qual seção do nosso grupo conta com o maior número de chefes atualmente?" },
+            { questao: "Quem é a pessoa que está há mais tempo em atividade contínua no grupo?" },
+            { questao: "Qual é o nome da nossa Alcateia do período da manhã?" },
+            { questao: "Qual é o nome da patrulha de apoio responsável por cuidar da infraestrutura da nossa sede?" }
         ];
 
         let idxD1 = 0;
@@ -511,6 +562,28 @@
                 console.error("Erro ao copiar a chave: ", err);
             });
         }
+        // Script Automatizado para Zoom nas Imagens
+        document.addEventListener("DOMContentLoaded", function() {
+            const imagens = document.querySelectorAll('.mapa-img, #foto-chefe');
+            imagens.forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    if (this.src && !this.src.endsWith('#')) {
+                        document.getElementById('imagemZoomed').src = this.src;
+                        document.getElementById('zoomOverlay').style.display = 'flex';
+                    }
+                });
+            });
+        });
+
+        function fecharZoom() {
+            document.getElementById('zoomOverlay').style.display = 'none';
+        }
     </script>
+    <!-- Janela de Zoom (Modal) -->
+    <div id="zoomOverlay" class="zoom-overlay">
+        <button class="btn-fechar-zoom" onclick="fecharZoom()">← Voltar</button>
+        <img id="imagemZoomed" src="" alt="Imagem Ampliada">
+    </div>
 </body>
 </html>
