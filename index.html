@@ -567,18 +567,18 @@ dadosD1.forEach(dado => {
                 console.error("Erro ao copiar a chave: ", err);
             });
         }
-        // Script Automatizado para Zoom nas Imagens
+        // Script focado exclusivamente no zoom da foto do chefe
         document.addEventListener("DOMContentLoaded", function() {
-            const imagens = document.querySelectorAll('.mapa-img, #foto-chefe');
-            imagens.forEach(img => {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', function() {
+            const fotoChefe = document.getElementById('foto-chefe');
+            if (fotoChefe) {
+                fotoChefe.style.cursor = 'zoom-in';
+                fotoChefe.addEventListener('click', function() {
                     if (this.src && !this.src.endsWith('#')) {
                         document.getElementById('imagemZoomed').src = this.src;
                         document.getElementById('zoomOverlay').style.display = 'flex';
                     }
                 });
-            });
+            }
         });
 
         function fecharZoom() {
